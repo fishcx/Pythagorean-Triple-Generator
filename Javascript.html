@@ -1,0 +1,36 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#generate').click(function(){
+    var num1 = parseInt($('#num1').val());
+    var num2 = parseInt($('#num2').val());
+    if((num1!==num2) && (num1>0) && (num2>0) && !isNaN(num1) && !isNaN(num2)){
+      generateTriple(num1,num2,"generatedOutput");
+    } else{
+      $("#generatedOutput").html("<span style='color:red'>Please enter two unique, positive integers.</span>");
+    }
+  });
+  
+  $('#random').click(function(){
+    var found = false;
+    while(!found){
+      var num1 = Math.floor((Math.random()*10)+1);
+      var num2 = Math.floor((Math.random()*10)+1);
+      if(num1!==num2){
+        generateTriple(num1,num2,"randomOutput");
+        found = true;
+      }
+    }
+  });
+  
+  function generateTriple(num1, num2, divID){
+    var c = num1*num1+num2*num2;
+    var x = Math.max(num1, num2);
+    var y = Math.min(num1, num2);
+    var a = x*x-y*y;
+    var b = 2*x*y;
+    $("#"+divID).html("Pythagorean Triple: "+a+"-"+b+"-"+c);
+  }
+});
+</script>
+
+
